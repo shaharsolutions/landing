@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>שחר פתרונות</title>
+  <style>
+    /* עיצוב בסיסי */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f6ff;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* כותרת גדולה */
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    /* תמונה במרכז */
+    img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    /* עיצוב הטופס */
+    form {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 320px;
+      opacity: 0;
+      animation: fadeIn 2s 1s forwards;
+    }
+
+    input {
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- כותרת גדולה -->
+  <h1>גלה את הפתרונות הדיגיטליים שלך עם שחר</h1>
+
+  <!-- תמונה במרכז -->
+  <img src="ShaharSolutions.png" alt="Shahar Solutions">
+
+  <!-- טופס להשארת פרטים -->
+  <form id="contactForm">
+    <input type="text" name="שם" placeholder="שם מלא" required>
+    <input type="tel" name="טלפון" placeholder="טלפון" required>
+    <input type="email" name="דוא"ל" placeholder="דוא"ל" required>
+    <button type="submit">להשארת פרטים</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch('https://script.google.com/macros/s/AKfycbyGAa5hU_GgGp7OCNxbLUu6gEnIqYwhqnpPsGGBuo1-n-eAOWk1kIxV1Khn2aynR7uuXw/exec', { // החלף כאן בכתובת ה-Deploy שלך
+        method: 'POST',
+        body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('פרטיך נקלטו בהצלחה! נחזור אליך בקרוב.');
+          form.reset();
+        } else {
+          alert('אירעה שגיאה. אנא נסה שוב.');
+        }
+      })
+      .catch(error => {
+        alert('אירעה שגיאה. אנא נסה שוב.');
+        console.error(error);
+      });
+    });
+  </script>
+
+</body>
+</html>
