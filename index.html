@@ -1,52 +1,441 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>שחר פתרונות</title>
-<style>
-  body { font-family: 'Segoe UI', sans-serif; background-color: #f0f6ff; color: #222; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: right; }
-  h1 { font-size: 2em; margin-bottom: 20px; opacity: 0; animation: fadeIn 2s forwards; }
-  img { max-width: 300px; border-radius: 15px; 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 20px; }
-  form { background: #ffffff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; flex-direction: column; width: 100%; max-width: 320px; opacity: 0; animation: fadeIn 2s 1s forwards; text-align: right; }
-  input { padding: 12px; margin: 8px 0; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1em; text-align: right; direction: rtl; }
-  input::placeholder { text-align: right; direction: rtl; }
-  button { padding: 12px; background-color: #3498db; color: white; font-size: 1em; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s; margin-top: 10px; }
-  button:hover { background-color: #2980b9; }
-  @keyframes fadeIn { to { opacity: 1; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שחר פתרונות דיגיטליים - חדשנות טכנולוגית לעסק שלך</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 4rem;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+            margin-bottom: 8rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 0 20px 0 80px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card:nth-child(1) {
+            border-right: 3px solid #667eea;
+        }
+
+        .service-card:nth-child(2) {
+            border-right: 3px solid #764ba2;
+        }
+
+        .service-card:nth-child(3) {
+            border-right: 3px solid #4ecdc4;
+        }
+
+        .service-card h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .service-card:nth-child(1) h3 {
+            color: #667eea;
+        }
+
+        .service-card:nth-child(2) h3 {
+            color: #764ba2;
+        }
+
+        .service-card:nth-child(3) h3 {
+            color: #4ecdc4;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px 30px 0 0;
+            padding: 4rem 0;
+            margin-top: 3rem;
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-form h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            direction: rtl;
+            text-align: right;
+            color: #333;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #6c757d;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .services {
+                gap: 4rem;
+                margin-bottom: 5rem;
+            }
+
+            .service-card {
+                padding: 3rem 2rem;
+                min-height: 60vh;
+            }
+
+            .service-card h3 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .service-card p {
+                font-size: 1.1rem;
+            }
+
+            .contact-form h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
+
 <body>
-<h1>גלה את הפתרונות הדיגיטליים שלך עם שחר</h1>
-<img src="ShaharSolutions.png" alt="Shahar Solutions">
-<form id="contactForm">
-  <input type="text" name="שם" placeholder="שם מלא" required>
-  <input type="tel" name="טלפון" placeholder="טלפון" required>
-  <input type="email" name="דוא" placeholder="דוא" required>
-  <button type="submit">להשארת פרטים</button>
-</form>
-<script>
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const data = new FormData(form);
-  fetch('https://script.google.com/macros/s/AKfycbyGAa5hU_GgGp7OCNxbLUu6gEnIqYwhqnpPsGGBuo1-n-eAOWk1kIxV1Khn2aynR7uuXw/exec', {
-    method: 'POST',
-    body: data
-  })
-  .then(response => {
-    if (response.ok) {
-      alert('פרטיך נקלטו בהצלחה! נחזור אליך בקרוב.');
-      form.reset();
-    } else {
-      alert('אירעה שגיאה. אנא נסה שוב.');
-    }
-  })
-  .catch(error => {
-    alert('אירעה שגיאה. אנא נסה שוב.');
-    console.error(error);
-  });
-});
-</script>
+    <div class="header">
+        <div class="container">
+            <h1>שחר פתרונות דיגיטליים</h1>
+            <p>מובילים את העסק שלך לעידן הדיגיטלי עם פתרונות חכמים ומותאמים אישית</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="services">
+            <div class="service-card">
+                <h3>ייעוץ והטמעת בינה מלאכותית</h3>
+                <p>התאמת כלים חכמים לתהליכי העבודה שלך. אנו מזהים הזדמנויות לשיפור ויעילות באמצעות טכנולוגיות AI
+                    מתקדמות, ומלווים אותך בכל שלב של התהליך - מהתכנון ועד ההטמעה המלאה.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>שיפור תהליכי שירות ומכירה</h3>
+                <p>מיקוד במענה מהיר, אוטומציות חכמות ושיפור חוויית הלקוח. אנו בונים מערכות שמאפשרות לך לתת מענה מהיר
+                    יותר, לזהות הזדמנויות עסקיות ולשפר את שביעות הרצון של הלקוחות שלך.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>בניית כלים דיגיטליים מותאמים</h3>
+                <p>טפסים חכמים, ממשקי ניהול פשוטים ופתרונות אוטומציה מותאמים לצרכים שלך. אנו מפתחים כלים דיגיטליים
+                    שחוסכים זמן, מפחיתים טעויות ומשפרים את היעילות התפעולית של העסק.</p>
+            </div>
+        </div>
+    </div>
+    <div class="contact-section">
+        <div class="contact-form">
+            <h2>בואו נתחיל לעבוד יחד</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="השם שלך" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="כתובת המייל שלך" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="מספר הטלפון שלך" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="ספר לנו על הפרויקט או האתגר שלך..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">שלח הודעה</button>
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>שולח הודעה...</p>
+                </div>
+                <div class="success-message">
+                    תודה! ההודעה נשלחה בהצלחה. נחזור אליך בהקדם.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const form = this;
+            const submitBtn = form.querySelector('.submit-btn');
+            const loading = form.querySelector('.loading');
+            const successMessage = form.querySelector('.success-message');
+
+            // Show loading
+            submitBtn.style.display = 'none';
+            loading.style.display = 'block';
+
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message'),
+                timestamp: new Date().toLocaleString('he-IL')
+            };
+
+            // Replace with your Google Apps Script URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzhsvQqFzIy0z9HPygUWuuXnNZRMGHXrU2Wgb-RFAtVfxoxXCr8GJvQYhrYXVC4wvR4dA/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(result => {
+                    // Hide loading
+                    loading.style.display = 'none';
+
+                    if (result.status === 'success') {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        form.reset();
+
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                            submitBtn.style.display = 'block';
+                        }, 5000);
+                    } else {
+                        throw new Error('Failed to submit form');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loading.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                    alert('אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.');
+                });
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+            observer.observe(card);
+        });
+    </script>
 </body>
+
 </html>
