@@ -145,14 +145,26 @@
 </form>
 
 <script>
-    const scriptURL = 'rvk96suhjuv1xhzpwro0xnu5gtvfvtbn@hook.eu2.make.com';
+    const scriptURL = 'https://hook.eu2.make.com/rvk96suhjuv1xhzpwro0xnu5gtvfvtbn';
     const form = document.getElementById('contactForm');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => alert('ההודעה נשלחה בהצלחה!'))
-            .catch(error => alert('אירעה שגיאה. נסה שוב.'));
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+
+        fetch(scriptURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => alert('ההודעה נשלחה בהצלחה!'))
+        .catch(error => alert('אירעה שגיאה. נסה שוב.'));
+
         form.reset();
     });
 </script>
