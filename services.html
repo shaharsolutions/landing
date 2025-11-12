@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שחר פתרונות דיגיטליים – דפי נחיתה שמביאים תוצאות</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* * CSS מובנה 
+         * עיצוב מודרני, נקי וממיר
+         */
+
+      /* משתני עיצוב */
+      :root {
+        --color-primary: #0a84ff; /* כחול עדין ומודרני */
+        --color-dark: #2c3e50; /* כהה (במקום שחור מוחלט) */
+        --color-text: #34495e; /* טקסט ראשי */
+        --color-text-secondary: #7f8c8d; /* טקסט משני */
+        --color-background-light: #f8f9fa; /* אפור בהיר רקע */
+        --color-white: #ffffff;
+        --font-family: "Assistant", sans-serif;
+        --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+        --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      /* איפוס בסיסי ועיצוב גלובלי */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory; /* הפעלת הצמדת גלילה אנכית */
+      }
+
+      body {
+        font-family: var(--font-family);
+        margin: 0;
+        padding: 0;
+        direction: rtl;
+        background-color: var(--color-white);
+        color: var(--color-text);
+        line-height: 1.7;
+        font-size: 17px;
+      }
+
+      /* טיפוגרפיה */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        color: var(--color-dark);
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        color: var(--color-primary);
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      /* כלי עזר (Utility) */
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 80px 20px;
+      }
+
+      /* הגדרות לכל חלק במסך מלא */
+      .full-page-section {
+        min-height: 100vh; /* 1. גובה מסך מלא */
+        scroll-snap-align: start; /* 2. הצמדה לתחילת המסך */
+        display: flex; /* 3. ממורכז אנכית */
+        align-items: center; /* 3. ממורכז אנכית */
+        justify-content: center; /* 4. ממורכז אופקית */
+        overflow-x: hidden;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* כפתור CTA ראשי */
+      .cta-button {
+        display: inline-block;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(10, 132, 255, 0.3);
+      }
+
+      /* ----- 1. Hero Section ----- */
+      .hero-section {
+        text-align: center;
+        background-color: var(--color-white);
+      }
+
+      .hero-content {
+        max-width: 800px;
+      }
+
+      .hero-intro {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-text);
+        margin-bottom: 10px;
+      }
+
+      .hero-section h2 {
+        font-size: 1.3rem;
+        color: var(--color-text-secondary);
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      /* ----- 2. ערך ייחודי (Why Me) ----- */
+      .value-props {
+        background-color: var(--color-background-light);
+      }
+
+      .props-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .prop-card {
+        background-color: var(--color-white);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--shadow-light);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .prop-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .prop-card .icon-placeholder {
+        font-size: 3rem;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+      }
+
+      .prop-card h4 {
+        font-size: 1.25rem;
+        color: var(--color-dark);
+        font-weight: 700;
+      }
+
+      /* ----- 3. איך זה עובד ----- */
+      .how-it-works {
+        background-color: var(--color-white);
+      }
+
+      .steps-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .step {
+        text-align: center;
+        position: relative;
+      }
+
+      .step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 30px;
+        right: -50%;
+        transform: translateX(50%);
+        width: calc(100% - 40px);
+        height: 2px;
+        border-top: 2px dashed var(--color-primary);
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .step .step-number {
+        width: 60px;
+        height: 60px;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        border: 4px solid #e7f3ff;
+        box-shadow: 0 0 10px rgba(10, 132, 255, 0.3);
+      }
+
+      .step h4 {
+        font-size: 1.25rem;
+        color: var(--color-dark);
+        margin-bottom: 5px;
+      }
+
+      /* ----- 4. חבילות מחיר ----- */
+      .pricing {
+        background-color: var(--color-background-light);
+      }
+
+      .pricing-grid {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 25px;
+        flex-wrap: nowrap;
+        /* overflow-x: auto; -> הוסר כדי למנוע גלילה אופקית לאחר הרחבת הקונטיינר */
+      }
+
+      .price-card {
+        background-color: var(--color-white);
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: var(--shadow-light);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        flex: 1 1 420px;
+        max-width: 480px;
+        height: 100%;
+      }
+
+      .price-card ul {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .price-card h4 {
+        font-size: 1.4rem;
+        color: var(--color-dark);
+        margin-bottom: 10px;
+      }
+
+      .price-card .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+      }
+
+      .price-card .price span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--color-text-secondary);
+      }
+
+      .price-card p {
+        color: var(--color-text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .price-card.pro {
+        transform: scale(1.05);
+        border: 2px solid var(--color-primary);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .price-card.pro h4 {
+        color: var(--color-primary);
+      }
+
+      /* ----- ⭐ התחלת התיקון ⭐ ----- */
+
+      /* תיקון: הרחבת הקונטיינר עבור סקשן המחירים */
+      .pricing .container {
+        max-width: 1350px;
+      }
+
+      /* תיקון: מניעת שבירת שורה בבולטים */
+      .price-card li {
+        white-space: nowrap;
+      }
+
+      /* ----- ⭐ סיום התיקון ⭐ ----- */
+
+      /* ----- 5. עדויות לקוחות ----- */
+      .testimonials {
+        background-color: var(--color-white);
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .testimonial {
+        background-color: var(--color-background-light);
+        padding: 30px;
+        border-radius: 12px;
+        border-right: 5px solid var(--color-primary);
+      }
+
+      .testimonial blockquote {
+        margin: 0;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: var(--color-text);
+        margin-bottom: 15px;
+      }
+
+      .testimonial .author {
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial .author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 15px;
+        border: 2px solid var(--color-primary);
+      }
+
+      .testimonial .author span {
+        font-weight: 700;
+        color: var(--color-dark);
+      }
+
+      /* ----- 6. טופס השארת פרטים ----- */
+      .contact-form-section {
+        background-color: var(--color-background-light);
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: var(--color-white);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-medium);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 14px;
+        font-family: var(--font-family);
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fdfdfd;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        text-align: right;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 8px rgba(10, 132, 255, 0.2);
+      }
+
+      .contact-form .cta-button {
+        width: 100%;
+        font-size: 1.2rem;
+      }
+
+      /* ----- 7. Footer ----- */
+      .site-footer {
+        background-color: var(--color-dark);
+        color: #bdc3c7;
+        text-align: center;
+        flex-direction: column; /* ⭐ סידור התוכן הפנימי בעמודה */
+      }
+
+      .footer-contact {
+        margin-bottom: 20px;
+        font-size: 1.1rem; /* הגדלה קלה של הטקסט */
+      }
+
+      .footer-contact span {
+        margin: 0 15px;
+        display: inline-block; /* מבטיח שכל חלק ירד שורה במובייל */
+      }
+
+      .footer-social-links a {
+        color: var(--color-white);
+        margin: 0 10px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-social-links a:hover {
+        color: var(--color-primary);
+      }
+
+      .footer-copyright {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      /* ----- אנימציות כניסה (JS) ----- */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ----- רספונסיביות (מובייל) ----- */
+      @media (max-width: 900px) {
+        .full-page-section {
+          padding: 60px 20px;
+        }
+
+        .container {
+          padding: 0 20px;
+        }
+
+        .props-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .steps-container {
+          grid-template-columns: 1fr;
+        }
+
+        .step:not(:last-child)::after {
+          display: none;
+        }
+
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* רספונסיביות מיוחדת לכרטיסי המחיר */
+      @media (max-width: 1360px) {
+        /* כשהמסך קצת יותר קטן מ-1350, חזור לגרסה גוללת */
+        .pricing .container {
+          max-width: 1100px; /* החזרה לרוחב המקורי */
+        }
+        .pricing-grid {
+          overflow-x: auto; /* החזרת הגלילה האופקית */
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2.8rem;
+        }
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        .full-page-section {
+          min-height: auto;
+          padding: 60px 20px;
+        }
+
+        /* נשאיר את ההירו ופוטר בגובה מלא */
+        .hero-section,
+        .site-footer {
+          min-height: 100vh;
+        }
+
+        .hero-intro {
+          font-size: 1.5rem;
+        }
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+        .hero-section h2 {
+          font-size: 1.1rem;
+        }
+
+        .props-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .price-card.pro {
+          transform: scale(1);
+        }
+
+        .contact-form {
+          padding: 25px;
+        }
+
+        .footer-contact span {
+          margin: 5px 15px; /* שיפור מרווחים במובייל */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero-section full-page-section">
+      <div class="hero-content">
+        <p class="hero-intro">דף הנחיתה שלך – פשוט עובד.</p>
+        <h1>עיצוב נקי. חיבור חכם. תוצאה ברורה.</h1>
+        <h2>
+          בניית דפי נחיתה ממוקדים עם עיצוב נקי וחיבורים חכמים שמתאימים לעסק שלך.
+        </h2>
+        <a href="#contact-form-section" class="cta-button hero-cta"
+          >דברו איתי</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section class="value-props full-page-section">
+        <div class="container">
+          <h2 class="animate-on-scroll">למה לבחור בנו?</h2>
+          <div class="props-grid">
+            <div class="prop-card animate-on-scroll">
+              <div class="icon-placeholder">📈</div>
+              <h4>ניסיון אמיתי במכירות</h4>
+              <p>מבין איך לקוחות חושבים, ומתרגם את זה לעיצוב שמוביל לפעולה.</p>
+            </div>
+            <div
+              class="prop-card animate-on-scroll"
+              style="transition-delay: 0.1s"
+            >
+              <div class="icon-placeholder">⚡</div>
+              <h4>ידע טכנולוגי מתקדם</h4>
+              <p>הכול מחובר כמו שצריך – CRM, אוטומציות וטפסים שעובדים חלק.</p>
+            </div>
+            <div
+              class="prop-card animate-on-scroll"
+              style="transition-delay: 0.2s"
+            >
+              <div class="icon-placeholder">🎨</div>
+              <h4>עיצוב נקי וממיר</h4>
+              <p>עיצוב מודרני ונקי, ממוקד במטרה אחת – לגרום לפנייה.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works full-page-section">
+        <div class="container">
+          <h2 class="animate-on-scroll">איך זה עובד?</h2>
+          <div class="steps-container">
+            <div class="step animate-on-scroll">
+              <div class="step-number">1</div>
+              <h4>שיחת אפיון קצרה</h4>
+              <p>מדברים 10 דקות ומבינים מה צריך.</p>
+            </div>
+            <div class="step animate-on-scroll" style="transition-delay: 0.1s">
+              <div class="step-number">2</div>
+              <h4>עיצוב ופיתוח הדף</h4>
+              <p>אני בונה דף ממוקד וברור, מותאם גם למובייל.</p>
+            </div>
+            <div class="step animate-on-scroll" style="transition-delay: 0.2s">
+              <div class="step-number">3</div>
+              <h4>השקה ובדיקת המרות</h4>
+              <p>מעלים לאוויר ובודקים שהכול עובד כמו שצריך.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing full-page-section">
+        <div class="container">
+          <h2 class="animate-on-scroll">חבילות גמישות לכל מטרה</h2>
+          <div class="pricing-grid">
+            <div
+              class="price-card animate-on-scroll"
+              style="transition-delay: 0.1s"
+            >
+              <h4>בסיס</h4>
+              <div class="price">
+                <span>עלות הקמה:</span> 790 ₪<br />
+                <span>תחזוקה חודשית:</span> 39 ₪
+              </div>
+              <ul
+                style="text-align: right; margin: 20px 0; padding-right: 20px"
+              >
+                <li>דף נחיתה במבנה פשוט ונקי</li>
+                <li>מותאם למובייל</li>
+                <li>טופס יצירת קשר המחובר לווטסאפ</li>
+                <li>אחסון חינמי בגיטהאב</li>
+              </ul>
+              <a href="#contact-form-section" class="cta-button">בחרו חבילה</a>
+            </div>
+            <div
+              class="price-card animate-on-scroll"
+              style="transition-delay: 0.15s"
+            >
+              <h4>מתקדמת</h4>
+              <div class="price">
+                <span>עלות הקמה:</span> 1,190 ₪<br />
+                <span>תחזוקה חודשית:</span> 59 ₪
+              </div>
+              <ul
+                style="text-align: right; margin: 20px 0; padding-right: 20px"
+              >
+                <li>עיצוב בהתאמה קלה למותג</li>
+                <li>חיבור לטופס לידים מבוסס Google Sheets</li>
+                <li>אפקטים קלים וחוויית גלילה נעימה</li>
+                <li>אפשרות לחיבור לדומיין קיים</li>
+              </ul>
+              <a href="#contact-form-section" class="cta-button">בחרו חבילה</a>
+            </div>
+            <div
+              class="price-card pro animate-on-scroll"
+              style="transition-delay: 0.2s"
+            >
+              <h4>פרימיום (המומלצת)</h4>
+              <div class="price">
+                <span>עלות הקמה:</span> 1,490 ₪<br />
+                <span>תחזוקה חודשית:</span> 69 ₪
+              </div>
+              <ul
+                style="text-align: right; margin: 20px 0; padding-right: 20px"
+              >
+                <li>עיצוב מותאם אישית ונקי</li>
+                <li>אינטגרציות ואוטומציות פשוטות בין המערכות שלך</li>
+                <li>עמוד נחיתה עם טאץ’ מקצועי ונעים</li>
+                <li>אפשרות להוסיף דף נוסף במידת הצורך</li>
+              </ul>
+              <a href="#contact-form-section" class="cta-button">בחרו חבילה</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials full-page-section">
+        <div class="container">
+          <h2 class="animate-on-scroll">מה לקוחות מספרים עלינו?</h2>
+          <div class="testimonial-grid">
+            <div class="testimonial animate-on-scroll">
+              <blockquote>
+                שחר בנה לי דף שעובד חלק ונראה מצוין. שירות מדויק וקשוב.
+              </blockquote>
+              <div class="author">
+                <img
+                  src="https://via.placeholder.com/50x50.png?text=I"
+                  alt="פרופיל איתמר לוי"
+                />
+                <span>איתמר לוי, מאמן עסקי</span>
+              </div>
+            </div>
+            <div
+              class="testimonial animate-on-scroll"
+              style="transition-delay: 0.1s"
+            >
+              <blockquote>
+                עבודה נקייה, יחס אישי ותוצאה שמשקפת בדיוק מה שרציתי.
+              </blockquote>
+              <div class="author">
+                <img
+                  src="https://via.placeholder.com/50x50.png?text=L"
+                  alt="פרופיל לירון רוזן"
+                />
+                <span>לירון רוזן, יועצת קריירה</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="contact-form-section full-page-section"
+        id="contact-form-section"
+      >
+        <div class="container">
+          <div class="contact-form animate-on-scroll">
+            <h2 class="text-center">מוכנים להתחיל?</h2>
+            <p class="text-center">השאירו פרטים ונחזור אליכם עם הצעה ממוקדת.</p>
+            <form action="#" method="POST" id="contact-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="שם מלא"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="טלפון"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="דוא״ל"
+                  required
+                />
+              </div>
+              <button type="submit" class="cta-button">שלחו לי הצעה</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer full-page-section">
+      <div>
+        <div class="footer-contact">
+          <span
+            >טלפון:
+            <a
+              href="tel:052-8366744"
+              style="color: #bdc3c7; text-decoration: none"
+              >052-8366744</a
+            ></span
+          >
+          |
+          <span
+            >דוא״ל:
+            <a
+              href="mailto:shaharsolutions@gmail.com"
+              style="color: #bdc3c7; text-decoration: none"
+              >shaharsolutions@gmail.com</a
+            ></span
+          >
+          |
+          <span>מיקום: רמת גן (נותנים שירות ללא הגבלת מיקום)</span>
+        </div>
+        <div class="footer-logo">שחר פתרונות דיגיטליים</div>
+        <div class="footer-copyright"></div>
+      </div>
+      <style>
+        .footer-logo {
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #ffffff;
+          margin-top: 30px;
+        }
+      </style>
+    </footer>
+
+    <script>
+      /* * JavaScript מובנה
+       * אנימציות כניסה בגלילה וגלילה חלקה
+       */
+
+      // הגדרה של משתנה גלובלי לשם החבילה
+      let selectedPackage = null;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- 1. אנימציית כניסה בגלילה ---
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.2,
+        };
+
+        const observerCallback = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          observerCallback,
+          observerOptions
+        );
+        const elementsToAnimate =
+          document.querySelectorAll(".animate-on-scroll");
+        elementsToAnimate.forEach((el) => observer.observe(el));
+
+        // --- 2. גלילה חלקה לטופס (כולל שמירת חבילה אם נבחרה) ---
+        const ctaButtons = document.querySelectorAll(".hero-cta, .pricing a");
+        const contactSection = document.querySelector("#contact-form-section");
+
+        // עדכון התנהגות כפתורי החבילות
+        ctaButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            // בדוק אם הכפתור הוא אחד מכפתורי החבילה (ב-seciton pricing)
+            const priceCard = this.closest(".price-card");
+            if (priceCard) {
+              // שמור את שם החבילה שנבחרה במשתנה גלובלי
+              selectedPackage = priceCard
+                .querySelector("h4")
+                .textContent.trim();
+              // הדגשה ויזואלית
+              document.querySelectorAll(".price-card").forEach((card) => {
+                if (!card.classList.contains("pro")) {
+                  card.style.border = "1px solid #e0e0e0";
+                } else {
+                  card.style.border = "2px solid var(--color-primary)";
+                }
+              });
+              priceCard.style.border = "3px solid #0056b3";
+            }
+            // גלילה חלקה לטופס
+            contactSection.scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // --- 3. שליחת טופס AJAX עם שם החבילה הנבחרת ---
+        const contactForm = document.getElementById("contact-form");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = contactForm.querySelector('input[name="name"]').value;
+            const phone = contactForm.querySelector(
+              'input[name="phone"]'
+            ).value;
+            const email = contactForm.querySelector(
+              'input[name="email"]'
+            ).value;
+            // אם לא נבחרה חבילה, נשתמש בערך ברירת מחדל
+            const packageName = selectedPackage || "לא נבחרה חבילה";
+            // שליחה ל-Apps Script ב-JSON
+            fetch(
+              "https://script.google.com/macros/s/AKfycby_aMJccfANcjmhUl1XJmfhB9wfa4ukj5UQIgeZuo-6A5ZU93GNVOBeEzEXod8lUw2YIQ/exec",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify({
+                  name: name,
+                  phone: phone,
+                  email: email,
+                  package: packageName,
+                }),
+              }
+            )
+              .then((response) => {
+                if (!response.ok)
+                  throw new Error("Network response was not ok");
+                return response.json();
+              })
+              .then((data) => {
+                alert("הפרטים נשלחו בהצלחה! נחזור אליך בהקדם.");
+                contactForm.reset();
+                // אופציונלי: איפוס הדגשת החבילה
+                document.querySelectorAll(".price-card").forEach((card) => {
+                  if (!card.classList.contains("pro")) {
+                    card.style.border = "1px solid #e0e0e0";
+                  } else {
+                    card.style.border = "2px solid var(--color-primary)";
+                  }
+                });
+                selectedPackage = null;
+              })
+              .catch((error) => {
+                alert("אירעה שגיאה בשליחת הפרטים. נסה שוב מאוחר יותר.");
+              });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
